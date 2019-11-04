@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { ICurrency } from '../models/currency.interface';
-import { GetCurrencies } from '../store/actions/currency.actions';
-import { selectCurrencyList } from '../store/selectors/currency.selector';
-import { IAppState } from '../store/state/app.state';
+import { ICurrency } from '../../models/currency.interface';
+import { GetCurrencies } from '../../store/actions/currency.actions';
+import { selectCurrencyList } from '../../store/selectors/currency.selector';
+import { IAppState } from '../../store/state/app.state';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class CurrencyComponent implements OnInit {
 
     ngOnInit() {
         this._store.dispatch(new GetCurrencies());
-        this._store.pipe(select(selectCurrencyList)).subscribe(data => this.currencies = data.ToArray());
+        this._store.pipe(select(selectCurrencyList)).subscribe(data => this.currencies = data);
     }
 
     selectCurrency(currency: ICurrency) {

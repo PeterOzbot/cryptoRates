@@ -1,9 +1,8 @@
 
-import { List } from 'linqts';
 import { ICurrency } from '../../models/currency.interface';
 
 export interface ICurrencyState {
-    currencies: List<ICurrency>;
+    currencies: ICurrency[];
     selectedCurrency: ICurrency;
 }
 

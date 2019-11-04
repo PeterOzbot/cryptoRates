@@ -1,12 +1,11 @@
 import { Action } from '@ngrx/store';
-import List from 'linqts/dist/src/list';
 import { ICurrency } from '../../models/currency.interface';
 
 export enum CurrencyActionsEnum {
     GetCurrencies = '[Currency] Get Currencies',
     GetCurrenciesSuccess = '[Currency] Get Currencies Success',
-    GetCurrency = '[Currency] Get Currency',
-    GetCurrencySuccess = '[Currency] Get Currency Success'
+    SetCurrency = '[Currency] Set Currency',
+    SetCurrencySuccess = '[Currency] Set Currency Success'
 }
 
 export class GetCurrencies implements Action {
@@ -15,17 +14,17 @@ export class GetCurrencies implements Action {
 
 export class GetCurrenciesSuccess implements Action {
     public readonly type = CurrencyActionsEnum.GetCurrenciesSuccess;
-    constructor(public payload: List<ICurrency>) { }
+    constructor(public payload: ICurrency[]) { }
 }
 
-export class GetCurrency implements Action {
-    public readonly type = CurrencyActionsEnum.GetCurrency;
-    constructor(public payload: string) { }
-}
-
-export class GetCurrencySuccess implements Action {
-    public readonly type = CurrencyActionsEnum.GetCurrencySuccess;
+export class SetCurrency implements Action {
+    public readonly type = CurrencyActionsEnum.SetCurrency;
     constructor(public payload: ICurrency) { }
 }
 
-export type CurrencyActions = GetCurrencies | GetCurrenciesSuccess | GetCurrency | GetCurrencySuccess;
+export class SetCurrencySuccess implements Action {
+    public readonly type = CurrencyActionsEnum.SetCurrencySuccess;
+    constructor(public payload: ICurrency) { }
+}
+
+export type CurrencyActions = GetCurrencies | GetCurrenciesSuccess | SetCurrency | SetCurrencySuccess;

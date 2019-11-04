@@ -13,7 +13,7 @@ export const currencyReducers = (
                 currencies: action.payload
             };
         }
-        case CurrencyActionsEnum.GetCurrencySuccess: {
+        case CurrencyActionsEnum.SetCurrencySuccess: {
             return {
                 ...state,
                 selectedCurrency: action.payload

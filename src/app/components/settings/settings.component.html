@@ -1,0 +1,6 @@
+<mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedCurrency"
+    (change)="selectCurrency(group.value)">
+    <mat-button-toggle *ngFor="let currency of currencies" [value]="currency">
+        {{currency?.code}}
+    </mat-button-toggle>
+</mat-button-toggle-group>
