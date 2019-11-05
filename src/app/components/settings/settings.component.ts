@@ -13,10 +13,10 @@ import { selectCurrencyList, selectSelectedCurrency } from 'src/app/store/select
 export class SettingsComponent implements OnInit {
   currencies: ICurrency[] = [];
   selectedCurrency: ICurrency;
+
   constructor(private _store: Store<IAppState>) { }
 
   ngOnInit() {
-    this._store.dispatch(new GetCurrencies());
     this._store.pipe(select(selectCurrencyList)).subscribe(data => this.currencies = data);
     this._store.pipe(select(selectSelectedCurrency)).subscribe(data => this.selectedCurrency = data);
   }

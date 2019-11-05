@@ -7,15 +7,20 @@ import { CurrencyService } from '../../services/currency.service';
 import { CurrencyActionsEnum, GetCurrencies, GetCurrenciesSuccess, SetCurrency, SetCurrencySuccess } from '../actions/currency.actions';
 import { selectCurrencyList } from '../selectors/currency.selector';
 import { IAppState } from '../state/app.state';
+import { GetRates } from '../actions/rate.actions';
 
 @Injectable()
 export class CurrencyEffects {
     @Effect()
     getCurrencies$ = this._actions$.pipe(
         ofType<GetCurrencies>(CurrencyActionsEnum.GetCurrencies),
-        switchMap(() => {
-            const allCurrencies = this._currencyService.getCurrencies();
-            return of(new GetCurrenciesSuccess(allCurrencies));
+        withLatestFrom(this._store.pipe(select(selectCurrencyList))),
+        switchMap(([payload, currencies]) => {
+            if (!currencies) {
+                const allCurrencies = this._currencyService.getCurrencies();
+                const defaultCurrency = allCurrencies ? allCurrencies[0] : null;
+                return [new GetCurrenciesSuccess(allCurrencies), new SetCurrency(defaultCurrency)];
+            }
         })
     );
 
@@ -24,7 +29,7 @@ export class CurrencyEffects {
         ofType<SetCurrency>(CurrencyActionsEnum.SetCurrency),
         map(action => action.payload),
         switchMap((selectedCurrency) => {
-            return of(new SetCurrencySuccess(selectedCurrency));
+            return [new SetCurrencySuccess(selectedCurrency), new GetRates(selectedCurrency)];
         })
     );
 
