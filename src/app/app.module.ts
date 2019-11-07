@@ -40,7 +40,8 @@ import { RateService } from './services/rate.service';
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+
   ],
   providers: [CurrencyService, RateService],
   bootstrap: [AppComponent]

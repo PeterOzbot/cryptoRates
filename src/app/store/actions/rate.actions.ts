@@ -5,6 +5,7 @@ import { ICurrency } from 'src/app/models/currency.interface';
 export enum RateActionsEnum {
     GetRates = '[Rate] Get Rates',
     GetRatesSuccess = '[Rate] Get Rates Success',
+    GetRatesFailure = '[Rate] Get Rates Failure'
 }
 
 export class GetRates implements Action {
@@ -17,4 +18,10 @@ export class GetRatesSuccess implements Action {
     constructor(public payload: IRate[]) { }
 }
 
-export type RateActions = GetRates | GetRatesSuccess;
+export class GetRatesFailure implements Action {
+    public readonly type = RateActionsEnum.GetRatesFailure;
+    constructor(public error: any) { }
+}
+
+
+export type RateActions = GetRates | GetRatesSuccess | GetRatesFailure;
