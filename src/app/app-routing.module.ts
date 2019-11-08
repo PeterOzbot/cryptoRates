@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SettingsComponent } from './components/settings/settings.component';
-
+import { CryptoCurrencyComponent } from './components/crypto-currency/crypto-currency.component';
+import { CryptoCurrencyDetailsComponent } from './components/crypto-currency-details/crypto-currency-details.component';
+import { RouteNames } from './app-routing';
 
 const routes: Routes = [
   {
-    path: 'settings',
+    path: RouteNames.Root,
+    component: CryptoCurrencyComponent
+  },
+  {
+    path: RouteNames.Settings,
     component: SettingsComponent
+  },
+  {
+    path: RouteNames.Details,
+    component: CryptoCurrencyDetailsComponent
   }
 ];
 
@@ -14,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { };

@@ -15,22 +15,27 @@ import { appReducers } from './store/reducers/app.reducers';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatSidenavModule, MatButtonModule, MatButtonToggleModule, MatIconModule } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component';
-import { RatesComponent } from './components/rates/rates.component';
+import { CryptoCurrencyComponent } from './components/crypto-currency/crypto-currency.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { RateEffects } from './store/effects/rate.effects';
-import { RateService } from './services/rate.service';
+import { CryptoCurrencyEffects } from './store/effects/crypto-currency.effects';
+import { CryptoCurrencyService } from './services/crypto-currency.service';
+import { CryptoCurrencyDetailsComponent } from './components/crypto-currency-details/crypto-currency-details.component';
+import { MatInputModule } from '@angular/material';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SettingsComponent,
-    RatesComponent
+    CryptoCurrencyComponent,
+    CryptoCurrencyDetailsComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([CurrencyEffects, RateEffects]),
+    EffectsModule.forRoot([CurrencyEffects, CryptoCurrencyEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
@@ -40,10 +45,10 @@ import { RateService } from './services/rate.service';
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
-    AgGridModule.withComponents([]),
-
+    MatInputModule,
+    AgGridModule.withComponents([])
   ],
-  providers: [CurrencyService, RateService],
+  providers: [CurrencyService, CryptoCurrencyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

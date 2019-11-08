@@ -1,16 +1,4 @@
 <mat-sidenav-container>
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <a mat-button routerLink="/">
-        <span>Crypto rates</span>
-      </a>
-      <span class="example-fill-remaining-space">
-      </span>
-      <button mat-mini-fab routerLink="/settings">
-        <mat-icon>settings_applications</mat-icon>
-      </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
+  <app-toolbar></app-toolbar>
   <router-outlet></router-outlet>
-  <app-rates></app-rates>
 </mat-sidenav-container>

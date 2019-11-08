@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /* GET api listing. */
-router.get('/getRates/:currencyCode', (req, res) => {
+router.get('/getCryptoCurrency/:currencyCode', (req, res) => {
 
     const rp = require('request-promise');
     const requestOptions = {
@@ -25,10 +25,17 @@ router.get('/getRates/:currencyCode', (req, res) => {
         if (response && response.data && response.data.length > 0) {
             let data = response.data.map(i => {
                 return {
+                    name: i.name,
                     rank: i.cmc_rank,
                     symbol: i.symbol,
                     price: i.quote[req.params.currencyCode].price,
-                    change: i.quote[req.params.currencyCode].percent_change_24h
+                    change1h: i.quote[req.params.currencyCode].percent_change_1h,
+                    change24h: i.quote[req.params.currencyCode].percent_change_24h,
+                    change7d: i.quote[req.params.currencyCode].percent_change_7d,
+                    volume24h: i.quote[req.params.currencyCode].volume_24h,
+                    marketCap: i.quote[req.params.currencyCode].market_cap,
+                    totalSupply: i.total_supply,
+                    maxSupply: i.max_supply
                 };
             });
             res.json(data);

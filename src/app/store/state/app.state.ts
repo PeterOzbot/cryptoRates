@@ -1,17 +1,17 @@
 import { RouterReducerState } from '@ngrx/router-store';
 import { ICurrencyState, initialCurrencyState } from './currecy.state';
-import { IRateState, initialRateState } from './rate.state';
+import { ICryptoCurrencyState, initialCryptoCurrencyState } from './crypto-currency.state';
 
 
 export interface IAppState {
     router?: RouterReducerState;
     currencies: ICurrencyState;
-    rates: IRateState;
+    cryptoCurrencies: ICryptoCurrencyState;
 }
 
 export function getInitialState(): IAppState {
     return {
         currencies: initialCurrencyState,
-        rates: initialRateState
+        cryptoCurrencies: initialCryptoCurrencyState
     };
 }

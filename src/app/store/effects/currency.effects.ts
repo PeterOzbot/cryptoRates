@@ -7,7 +7,7 @@ import { CurrencyService } from '../../services/currency.service';
 import { CurrencyActionsEnum, GetCurrencies, GetCurrenciesSuccess, SetCurrency, SetCurrencySuccess } from '../actions/currency.actions';
 import { selectCurrencyList } from '../selectors/currency.selector';
 import { IAppState } from '../state/app.state';
-import { GetRates } from '../actions/rate.actions';
+import { GetCryptoCurrency } from '../actions/crypto-currency.actions';
 
 @Injectable()
 export class CurrencyEffects {
@@ -29,7 +29,7 @@ export class CurrencyEffects {
         ofType<SetCurrency>(CurrencyActionsEnum.SetCurrency),
         map(action => action.payload),
         switchMap((selectedCurrency) => {
-            return [new SetCurrencySuccess(selectedCurrency), new GetRates(selectedCurrency)];
+            return [new SetCurrencySuccess(selectedCurrency), new GetCryptoCurrency(selectedCurrency)];
         })
     );
 
