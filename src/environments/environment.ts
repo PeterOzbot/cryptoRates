@@ -6,8 +6,9 @@ export const environment = {
   production: false,
   availableCurrencies: [{ code: 'USD' }, { code: 'EUR' }, { code: 'CNY' }],
   serverUrl: 'http://localhost:4000/api',
-  apiKey: '0770e4c5-9653-44a4-87d9-c27dce85268f',
-  coinMarketApiUrl: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+  getCryptoCurrency: 'getCryptoCurrency',
+  getCryptoCurrencyBtcPrice: 'getCryptoCurrencyBtcPrice',
+  getCryptoCurrencyDetails: 'getCryptoCurrencyDetails'
 };
 
 /*

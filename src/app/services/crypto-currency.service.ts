@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ICryptoCurrency } from '../models/crypto-currency.interface';
 import { ICurrency } from '../models/currency.interface';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ICryptoCurrencyDetails } from '../models/crypto-currency-details.interface';
 
 
 @Injectable()
 export class CryptoCurrencyService {
-
     constructor(private http: HttpClient) { }
 
     getCryptoCurrency(currency: ICurrency): Observable<ICryptoCurrency[]> {
@@ -18,7 +18,24 @@ export class CryptoCurrencyService {
             return from([[]]);
         }
 
-        return this.http.get<ICryptoCurrency[]>(environment.serverUrl + '/getCryptoCurrency/' + currency.code);
+        return this.http.get<ICryptoCurrency[]>(`${environment.serverUrl}/${environment.getCryptoCurrency}/${currency.code}`);
+    }
+
+    getCryptoCurrencyDetails(currency: ICurrency, cryptoCurrency: ICryptoCurrency): Observable<ICryptoCurrencyDetails> {
+        // if no currency return nothing
+        if (!currency || !cryptoCurrency) {
+            return from([]);
+        }
+
+        return this.http.get<ICryptoCurrencyDetails>(`${environment.serverUrl}/${environment.getCryptoCurrencyDetails}/${currency.code}/${cryptoCurrency.symbol}`);
+    }
+
+    getBtcPrice(cryptoCurrency: ICryptoCurrency): Observable<ICryptoCurrencyDetails> {
+        // if no currency return nothing
+        if (!cryptoCurrency) {
+            return from([]);
+        }
+
+        return this.http.get<ICryptoCurrencyDetails>(`${environment.serverUrl}/${environment.getCryptoCurrencyBtcPrice}/${cryptoCurrency.symbol}`);
     }
 }
-//Invoke-WebRequest -Uri "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest" -Headers @{'X-CMC_PRO_API_KEY'='0770e4c5-9653-44a4-87d9-c27dce85268f';"Accept"= "application/json"}

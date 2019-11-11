@@ -9,10 +9,14 @@ var app = express();
 app.use(cors());
 
 // Get our API routes
-const getCryptoCurrency = require('./api/get-crypto-currency-api');
+const getCryptoCurrency = require('./api/get-crypto-currency');
+const getCryptoCurrencyDetails = require('./api/get-crypto-currency-details');
+const getCryptoCurrencyBtcPrice = require('./api/get-crypto-currency-btc-price');
 
 // Set our api routes
 app.use('/api', getCryptoCurrency);
+app.use('/api', getCryptoCurrencyDetails);
+app.use('/api', getCryptoCurrencyBtcPrice);
 
 /**
  * Get port from environment and store in Express.

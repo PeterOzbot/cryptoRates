@@ -14,3 +14,8 @@ export const selectSelectedCryptoCurrency = createSelector(
     selectCryptoCurrency,
     (state: ICryptoCurrencyState) => state.selectedCryptoCurrency
 );
+
+export const selectSelectedCryptoCurrencyDetails = createSelector(
+    selectCryptoCurrency,
+    (state: ICryptoCurrencyState) => state.selectedCryptoCurrencyDetails
+);

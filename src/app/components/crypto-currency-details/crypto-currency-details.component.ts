@@ -3,8 +3,9 @@ import { ICryptoCurrency } from 'src/app/models/crypto-currency.interface';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
-import { selectSelectedCryptoCurrency } from 'src/app/store/selectors/crypto-currency.selector';
+import { selectSelectedCryptoCurrency, selectSelectedCryptoCurrencyDetails } from 'src/app/store/selectors/crypto-currency.selector';
 import { ICurrencyState } from 'src/app/store/state/currecy.state';
+import { ICryptoCurrencyDetails } from 'src/app/models/crypto-currency-details.interface';
 
 @Component({
   selector: 'app-crypto-currency-details',
@@ -12,11 +13,11 @@ import { ICurrencyState } from 'src/app/store/state/currecy.state';
   styleUrls: ['./crypto-currency-details.component.css']
 })
 export class CryptoCurrencyDetailsComponent implements OnInit {
-  cryptoCurrency: ICryptoCurrency;
+  cryptoCurrencyDetails: ICryptoCurrencyDetails;
 
   constructor(private _store: Store<IAppState>) { }
 
   ngOnInit() {
-    this._store.pipe(select(selectSelectedCryptoCurrency)).subscribe(data => this.cryptoCurrency = data);
+    this._store.pipe(select(selectSelectedCryptoCurrencyDetails)).subscribe(data => this.cryptoCurrencyDetails = data);
   }
 }

@@ -1,43 +1,44 @@
 <div class="crypto-currency-container">
     <div class="crypto-currency-row">
         <mat-form-field>
-            <input matInput placeholder="Name" [value]="cryptoCurrency?.name" readonly>
+            <input matInput placeholder="Name" [value]="cryptoCurrencyDetails?.name" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Rank" [value]="cryptoCurrency?.rank" readonly>
+            <input matInput placeholder="Rank" [value]="cryptoCurrencyDetails?.rank" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Symbol" [value]="cryptoCurrency?.symbol" readonly>
+            <input matInput placeholder="Symbol" [value]="cryptoCurrencyDetails?.symbol" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Total supply" [value]="cryptoCurrency?.maxSupply | number" readonly>
+            <input matInput placeholder="Total supply" [value]="cryptoCurrencyDetails?.maxSupply | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Available supply" [value]="cryptoCurrency?.totalSupply | number" readonly>
+            <input matInput placeholder="Available supply" [value]="cryptoCurrencyDetails?.totalSupply | number"
+                readonly>
         </mat-form-field>
     </div>
     <div class="crypto-currency-row">
         <mat-form-field>
-            <input matInput placeholder="Price" [value]="cryptoCurrency?.price | number" readonly>
+            <input matInput placeholder="Price" [value]="cryptoCurrencyDetails?.price | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="24 volumne cap" [value]="cryptoCurrency?.volume24h | number" readonly>
+            <input matInput placeholder="24 volumne cap" [value]="cryptoCurrencyDetails?.volume24h | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Market cap" [value]="cryptoCurrency?.marketCap | number" readonly>
+            <input matInput placeholder="Market cap" [value]="cryptoCurrencyDetails?.marketCap | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="1h change" [value]="cryptoCurrency?.change1h | number" readonly>
+            <input matInput placeholder="1h change" [value]="cryptoCurrencyDetails?.change1h | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="24h change" [value]="cryptoCurrency?.change24h | number" readonly>
+            <input matInput placeholder="24h change" [value]="cryptoCurrencyDetails?.change24h | number" readonly>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="7d change" [value]="cryptoCurrency?.change7d | number" readonly>
+            <input matInput placeholder="7d change" [value]="cryptoCurrencyDetails?.change7d | number" readonly>
         </mat-form-field>
-
         <mat-form-field>
-            <input matInput placeholder="Price in BTC" [value]="0" readonly>
+            <input matInput placeholder="Price in BTC" [value]="cryptoCurrencyDetails?.btcPrice | number:'1.2-6'"
+                readonly>
         </mat-form-field>
     </div>
 </div>

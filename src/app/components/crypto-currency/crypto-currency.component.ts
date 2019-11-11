@@ -18,7 +18,7 @@ export class CryptoCurrencyComponent implements OnInit {
     { headerName: 'Rank', field: 'rank' },
     { headerName: 'Symbol', field: 'symbol' },
     { headerName: 'Price', field: 'price' },
-    { headerName: 'Change', field: 'change' }
+    { headerName: '24h Change', field: 'change24h' }
   ];
   gridApi;
   gridColumnApi;
