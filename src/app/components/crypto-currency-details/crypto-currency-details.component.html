@@ -1,44 +1,41 @@
+<button class="refresh-button" mat-mini-fab (click)="refresh()">
+    <mat-icon>autorenew</mat-icon>
+</button>
 <div class="crypto-currency-container">
-    <div class="crypto-currency-row">
-        <mat-form-field>
-            <input matInput placeholder="Name" [value]="cryptoCurrencyDetails?.name" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Rank" [value]="cryptoCurrencyDetails?.rank" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Symbol" [value]="cryptoCurrencyDetails?.symbol" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Total supply" [value]="cryptoCurrencyDetails?.maxSupply | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Available supply" [value]="cryptoCurrencyDetails?.totalSupply | number"
-                readonly>
-        </mat-form-field>
-    </div>
-    <div class="crypto-currency-row">
-        <mat-form-field>
-            <input matInput placeholder="Price" [value]="cryptoCurrencyDetails?.price | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="24 volumne cap" [value]="cryptoCurrencyDetails?.volume24h | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Market cap" [value]="cryptoCurrencyDetails?.marketCap | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="1h change" [value]="cryptoCurrencyDetails?.change1h | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="24h change" [value]="cryptoCurrencyDetails?.change24h | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="7d change" [value]="cryptoCurrencyDetails?.change7d | number" readonly>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Price in BTC" [value]="cryptoCurrencyDetails?.btcPrice | number:'1.2-6'"
-                readonly>
-        </mat-form-field>
-    </div>
+    <mat-form-field>
+        <input matInput placeholder="Name" [value]="cryptoCurrencyDetails?.name" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Rank" [value]="cryptoCurrencyDetails?.rank" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Symbol" [value]="cryptoCurrencyDetails?.symbol" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Total supply" [value]="cryptoCurrencyDetails?.maxSupply | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Available supply" [value]="cryptoCurrencyDetails?.totalSupply | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Price" [value]="cryptoCurrencyDetails?.price | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="24 volumne cap" [value]="cryptoCurrencyDetails?.volume24h | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Market cap" [value]="cryptoCurrencyDetails?.marketCap | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="1h change" [value]="cryptoCurrencyDetails?.change1h | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="24h change" [value]="cryptoCurrencyDetails?.change24h | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="7d change" [value]="cryptoCurrencyDetails?.change7d | number" readonly>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Price in BTC" [value]="cryptoCurrencyDetails?.btcPrice | number:'1.2-6'" readonly>
+    </mat-form-field>
 </div>

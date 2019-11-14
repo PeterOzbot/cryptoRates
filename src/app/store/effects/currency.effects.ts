@@ -7,7 +7,8 @@ import { CurrencyService } from '../../services/currency.service';
 import { CurrencyActionsEnum, GetCurrencies, GetCurrenciesSuccess, SetCurrency, SetCurrencySuccess } from '../actions/currency.actions';
 import { selectCurrencyList } from '../selectors/currency.selector';
 import { IAppState } from '../state/app.state';
-import { GetCryptoCurrency } from '../actions/crypto-currency.actions';
+import { GetCryptoCurrency, GetCryptoCurrencyDetailsSuccess, GetCryptoCurrencyDetails } from '../actions/crypto-currency.actions';
+import { selectSelectedCryptoCurrency } from '../selectors/crypto-currency.selector';
 
 @Injectable()
 export class CurrencyEffects {
@@ -27,9 +28,14 @@ export class CurrencyEffects {
     @Effect()
     setCurrency$ = this._actions$.pipe(
         ofType<SetCurrency>(CurrencyActionsEnum.SetCurrency),
-        map(action => action.payload),
-        switchMap((selectedCurrency) => {
-            return [new SetCurrencySuccess(selectedCurrency), new GetCryptoCurrency(selectedCurrency)];
+        withLatestFrom(this._store.pipe(select(selectSelectedCryptoCurrency))),
+        switchMap(([selectedCurrency, cryptoCurrency]) => {
+            if (!cryptoCurrency) {
+                return [new SetCurrencySuccess(selectedCurrency.payload), new GetCryptoCurrency()];
+            }
+            else {
+                return [new SetCurrencySuccess(selectedCurrency.payload), new GetCryptoCurrency(), new GetCryptoCurrencyDetails()];
+            }
         })
     );
 

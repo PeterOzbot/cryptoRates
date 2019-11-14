@@ -1,4 +1,7 @@
+<button class="refresh-button" mat-mini-fab (click)="refresh()">
+    <mat-icon>autorenew</mat-icon>
+</button>
 <ag-grid-angular #agGrid class="ag-theme-balham" [rowData]="cryptoCurrencies" [columnDefs]="columnDefs"
     [rowSelection]="rowSelection" (selectionChanged)="selectCryptoCurrency($event)" (gridReady)="onGridReady($event)"
-    style="width: 100%; height: 500px;">
+    style="width: 100%; height: 1000px;">
 </ag-grid-angular>

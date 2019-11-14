@@ -18,7 +18,7 @@ export enum CryptoCurrencyActionsEnum {
 
 export class GetCryptoCurrency implements Action {
     public readonly type = CryptoCurrencyActionsEnum.GetCryptoCurrency;
-    constructor(public payload: ICurrency) { }
+    constructor() { }
 }
 
 export class GetCryptoCurrencySuccess implements Action {
@@ -48,7 +48,7 @@ export class ClearCryptoCurrencyDetails implements Action {
 
 export class GetCryptoCurrencyDetails implements Action {
     public readonly type = CryptoCurrencyActionsEnum.GetCryptoCurrencyDetails;
-    constructor(public payload: ICryptoCurrency) { }
+    constructor() { }
 }
 
 export class GetCryptoCurrencyDetailsSuccess implements Action {

@@ -6,6 +6,8 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { selectSelectedCryptoCurrency, selectSelectedCryptoCurrencyDetails } from 'src/app/store/selectors/crypto-currency.selector';
 import { ICurrencyState } from 'src/app/store/state/currecy.state';
 import { ICryptoCurrencyDetails } from 'src/app/models/crypto-currency-details.interface';
+import { GetCurrencies } from 'src/app/store/actions/currency.actions';
+import { GetCryptoCurrencyDetails } from 'src/app/store/actions/crypto-currency.actions';
 
 @Component({
   selector: 'app-crypto-currency-details',
@@ -19,5 +21,11 @@ export class CryptoCurrencyDetailsComponent implements OnInit {
 
   ngOnInit() {
     this._store.pipe(select(selectSelectedCryptoCurrencyDetails)).subscribe(data => this.cryptoCurrencyDetails = data);
+  }
+
+  refresh() {
+    if (this.cryptoCurrencyDetails) {
+      this._store.dispatch(new GetCryptoCurrencyDetails());
+    }
   }
 }

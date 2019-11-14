@@ -1,7 +1,6 @@
 .crypto-currency-container{
-    flex: 50%;
-  }
-  
-  .crypto-currency-row {
     display: flex;
+    flex-direction: column;
+    margin: 30px;
   }
+

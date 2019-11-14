@@ -16,8 +16,9 @@ export class CryptoCurrencyEffects {
     @Effect()
     getCryptoCurrency$ = this._actions$.pipe(
         ofType<GetCryptoCurrency>(CryptoCurrencyActionsEnum.GetCryptoCurrency),
-        switchMap(({ payload }) => {
-            return this._cryptoCurrencyService.getCryptoCurrency(payload)
+        withLatestFrom(this._store.pipe(select(selectSelectedCurrency))),
+        switchMap(([payload, selectedCurrency]) => {
+            return this._cryptoCurrencyService.getCryptoCurrency(selectedCurrency)
                 .pipe(
                     map((cryptoCurrencies: ICryptoCurrency[]) => {
                         return new GetCryptoCurrencySuccess(cryptoCurrencies);
@@ -32,22 +33,19 @@ export class CryptoCurrencyEffects {
         ofType<SetCryptoCurrency>(CryptoCurrencyActionsEnum.SetCryptoCurrency),
         map(action => action.payload),
         switchMap((cryptoCurrency) => {
-            if (cryptoCurrency) {
-                return [new SetCryptoCurrencySuccess(cryptoCurrency), new ClearCryptoCurrencyDetails(), new GetCryptoCurrencyDetails(cryptoCurrency)];
-            }
+            return [new SetCryptoCurrencySuccess(cryptoCurrency), new ClearCryptoCurrencyDetails(), new GetCryptoCurrencyDetails()];
         })
     );
 
     @Effect()
     getCryptoCurrencyDetails$ = this._actions$.pipe(
         ofType<GetCryptoCurrencyDetails>(CryptoCurrencyActionsEnum.GetCryptoCurrencyDetails),
-        map(action => action.payload),
         withLatestFrom(this._store.pipe(select(selectSelectedCryptoCurrency)), this._store.pipe(select(selectSelectedCurrency))),
-        switchMap(([payload, selectedCryptoCurrency, selectedSurrency]) => {
-            // make call to get details AND to get btc price
+        switchMap(([payload, selectedCryptoCurrency, selectedCurrency]) => {
             if (selectedCryptoCurrency) {
 
-                let getDetails = this._cryptoCurrencyService.getCryptoCurrencyDetails(selectedSurrency, selectedCryptoCurrency);
+                // make call to get details AND to get btc price
+                let getDetails = this._cryptoCurrencyService.getCryptoCurrencyDetails(selectedCurrency, selectedCryptoCurrency);
                 let getBtcPrice = this._cryptoCurrencyService.getBtcPrice(selectedCryptoCurrency);
 
                 return forkJoin([getDetails, getBtcPrice]).pipe(
@@ -61,6 +59,9 @@ export class CryptoCurrencyEffects {
                     }),
                     catchError(err => of(new GetCryptoCurrencyDetailsFailure(err)))
                 )
+            }
+            else {
+                of(new GetCryptoCurrencyDetailsFailure("Cant load details. SelectedCryptoCurrency is not defined."));
             }
         })
     );

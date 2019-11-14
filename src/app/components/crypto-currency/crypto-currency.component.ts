@@ -3,9 +3,10 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { selectCryptoCurrencies } from 'src/app/store/selectors/crypto-currency.selector';
 import { ICryptoCurrency } from 'src/app/models/crypto-currency.interface';
-import { SetCryptoCurrency } from 'src/app/store/actions/crypto-currency.actions';
+import { SetCryptoCurrency, GetCryptoCurrency } from 'src/app/store/actions/crypto-currency.actions';
 import { Router } from '@angular/router';
 import { RouteNames } from 'src/app/app-routing';
+import { GetCurrencies } from 'src/app/store/actions/currency.actions';
 
 @Component({
   selector: 'app-crypto-currency',
@@ -36,6 +37,10 @@ export class CryptoCurrencyComponent implements OnInit {
       this._store.dispatch(new SetCryptoCurrency(selectedCryptoCurrency[0]));
       this.router.navigateByUrl(RouteNames.Details);
     }
+  }
+
+  refresh() {
+    this._store.dispatch(new GetCryptoCurrency());
   }
 
   onGridReady(params) {
