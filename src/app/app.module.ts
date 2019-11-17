@@ -22,6 +22,7 @@ import { CryptoCurrencyService } from './services/crypto-currency.service';
 import { CryptoCurrencyDetailsComponent } from './components/crypto-currency-details/crypto-currency-details.component';
 import { MatInputModule } from '@angular/material';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { NavigationService } from './services/navigation.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatInputModule,
     AgGridModule.withComponents([])
   ],
-  providers: [CurrencyService, CryptoCurrencyService],
+  providers: [NavigationService, CurrencyService, CryptoCurrencyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

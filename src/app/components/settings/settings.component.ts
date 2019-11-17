@@ -17,11 +17,13 @@ export class SettingsComponent implements OnInit {
   constructor(private _store: Store<IAppState>) { }
 
   ngOnInit() {
+    // subscribe to list fo all available currencies and to currently selected one
     this._store.pipe(select(selectCurrencyList)).subscribe(data => this.currencies = data);
     this._store.pipe(select(selectSelectedCurrency)).subscribe(data => this.selectedCurrency = data);
   }
 
   selectCurrency(currency: ICurrency) {
+    // dispatch new selected currency
     this._store.dispatch(new SetCurrency(currency));
   }
 

@@ -9,12 +9,10 @@ import { GetCurrencies } from './store/actions/currency.actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Crypto Rates';
-
   constructor(private _store: Store<IAppState>) { }
 
-
   ngOnInit() {
+    // trigger initial load of available fiat currencies
     this._store.dispatch(new GetCurrencies());
   }
 }

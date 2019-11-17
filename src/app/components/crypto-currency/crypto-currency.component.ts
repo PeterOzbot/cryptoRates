@@ -4,9 +4,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { selectCryptoCurrencies } from 'src/app/store/selectors/crypto-currency.selector';
 import { ICryptoCurrency } from 'src/app/models/crypto-currency.interface';
 import { SetCryptoCurrency, GetCryptoCurrency } from 'src/app/store/actions/crypto-currency.actions';
-import { Router } from '@angular/router';
-import { RouteNames } from 'src/app/app-routing';
-import { GetCurrencies } from 'src/app/store/actions/currency.actions';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-crypto-currency',
@@ -25,25 +23,31 @@ export class CryptoCurrencyComponent implements OnInit {
   gridColumnApi;
   rowSelection = "single";
 
-  constructor(private _store: Store<IAppState>, private router: Router) { }
+  constructor(private _store: Store<IAppState>, private navigationService: NavigationService) { }
 
   ngOnInit() {
+    // subscribe to list of crypto currencies
     this._store.pipe(select(selectCryptoCurrencies)).subscribe(data => this.cryptoCurrencies = data);
   }
 
   selectCryptoCurrency(event) {
+    // get the selected one
     var selectedCryptoCurrency = this.gridApi.getSelectedRows();
+
+    // dispatch selected crypto currency and navigate to details view
     if (selectedCryptoCurrency && selectedCryptoCurrency.length > 0) {
       this._store.dispatch(new SetCryptoCurrency(selectedCryptoCurrency[0]));
-      this.router.navigateByUrl(RouteNames.Details);
+      this.navigationService.goToDetails();
     }
   }
 
   refresh() {
+    // reload the list
     this._store.dispatch(new GetCryptoCurrency());
   }
 
   onGridReady(params) {
+    // setting up ag-grid
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }

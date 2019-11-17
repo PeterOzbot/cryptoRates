@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { RouteNames } from 'src/app/app-routing';
-import { Location } from '@angular/common';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,21 +8,16 @@ import { Location } from '@angular/common';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(private navigationService: NavigationService) { }
 
   ngOnInit() {
   }
 
   toggleSetting() {
-    if (this.router.url === '/' + RouteNames.Settings) {
-      this.location.back();
-    }
-    else {
-      this.router.navigateByUrl(RouteNames.Settings);
-    }
+    this.navigationService.toggleSetting();
   }
 
   goToRoot() {
-    this.router.navigateByUrl(RouteNames.Root);
+    this.navigationService.goToRoot();
   }
 }

@@ -20,12 +20,12 @@ export class CryptoCurrencyDetailsComponent implements OnInit {
   constructor(private _store: Store<IAppState>) { }
 
   ngOnInit() {
+    // subscribe to crypto details
     this._store.pipe(select(selectSelectedCryptoCurrencyDetails)).subscribe(data => this.cryptoCurrencyDetails = data);
   }
 
   refresh() {
-    if (this.cryptoCurrencyDetails) {
-      this._store.dispatch(new GetCryptoCurrencyDetails());
-    }
+    // reload details
+    this._store.dispatch(new GetCryptoCurrencyDetails());
   }
 }

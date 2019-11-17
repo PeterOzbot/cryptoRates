@@ -1,35 +1,56 @@
-import { async, TestBed } from '@angular/core/testing';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { GetCurrencies } from './store/actions/currency.actions';
+import { Store } from '@ngrx/store';
+import { MockToolbarComponent, MockSidenavContainerComponent, MockRouterOutletComponent } from 'src/test-util/mocked-components';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let mockStore;
+  const initialState = {
+    currencies: {},
+    cryptoCurrencies: {}
+  };
+
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MockToolbarComponent,
+        MockSidenavContainerComponent,
+        MockRouterOutletComponent
       ],
+      providers: [provideMockStore({ initialState })]
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    mockStore = TestBed.get(Store);
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should create the component', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Crypto Rates'`, () => {
+  it('should dispatch an the GetCurrencies action in ngOnInit lifecycle', () => {
+    // arrange
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Crypto Rates');
-  });
+    const action = new GetCurrencies();
+    const spy = spyOn(mockStore, 'dispatch');
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    // act
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Crypto Rates app is running!');
+
+    // assert
+    expect(spy).toHaveBeenCalledWith(action);
   });
 });
