@@ -1,3 +1,20 @@
 .refresh-button {
-margin: 3px;
+    margin: 15px;
+    float: right;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-row:hover {
+    background-color: gray;
+}
+
+.positiveChange {
+    color: #77dd77;
+}
+
+.negativeChange {
+    color: #ff6961;
 }

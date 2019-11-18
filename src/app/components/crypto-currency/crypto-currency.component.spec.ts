@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CryptoCurrencyComponent } from './crypto-currency.component';
-import { MatToolbarModule, MatSidenavModule, MatButtonModule, MatButtonToggleModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatButtonModule, MatButtonToggleModule, MatIconModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
-import { AgGridModule } from 'ag-grid-angular';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { MockNavigationService } from 'src/test-util/mocked-services';
 import { GetCryptoCurrency } from 'src/app/store/actions/crypto-currency.actions';
@@ -25,7 +24,8 @@ describe('CryptoCurrencyComponent', () => {
           MatIconModule,
           MatInputModule,
           NoopAnimationsModule,
-          AgGridModule.withComponents([])
+          MatTableModule,
+          MatPaginatorModule
         ],
         declarations: [CryptoCurrencyComponent],
         providers: [provideMockStore({ initialState }), { provide: NavigationService, useClass: MockNavigationService }]

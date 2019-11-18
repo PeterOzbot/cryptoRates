@@ -32,15 +32,18 @@
     </mat-form-field>
     <mat-form-field>
         <input matInput id="change1h" placeholder="1h change" [value]="cryptoCurrencyDetails?.change1h | number"
-            readonly>
+            readonly
+            [ngClass]="{'negativeChange':cryptoCurrencyDetails?.change1h < 0,'positiveChange':cryptoCurrencyDetails?.change1h > 0}">
     </mat-form-field>
     <mat-form-field>
         <input matInput id="change24h" placeholder="24h change" [value]="cryptoCurrencyDetails?.change24h | number"
-            readonly>
+            readonly
+            [ngClass]="{'negativeChange':cryptoCurrencyDetails?.change24h < 0,'positiveChange':cryptoCurrencyDetails?.change24h > 0}">
     </mat-form-field>
     <mat-form-field>
         <input matInput id="change7d" placeholder="7d change" [value]="cryptoCurrencyDetails?.change7d | number"
-            readonly>
+            readonly
+            [ngClass]="{'negativeChange':cryptoCurrencyDetails?.change7d < 0,'positiveChange':cryptoCurrencyDetails?.change7d > 0}">
     </mat-form-field>
     <mat-form-field>
         <input matInput id="btcPrice" placeholder="Price in BTC"

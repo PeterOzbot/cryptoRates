@@ -13,7 +13,7 @@ import { CurrencyService } from './services/currency.service';
 import { CurrencyEffects } from './store/effects/currency.effects';
 import { appReducers } from './store/reducers/app.reducers';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatSidenavModule, MatButtonModule, MatButtonToggleModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatButtonModule, MatButtonToggleModule, MatIconModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { SettingsComponent } from './components/settings/settings.component';
 import { CryptoCurrencyComponent } from './components/crypto-currency/crypto-currency.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -47,7 +47,8 @@ import { NavigationService } from './services/navigation.service';
     MatButtonToggleModule,
     MatIconModule,
     MatInputModule,
-    AgGridModule.withComponents([])
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [NavigationService, CurrencyService, CryptoCurrencyService],
   bootstrap: [AppComponent]

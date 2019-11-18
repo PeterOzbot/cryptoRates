@@ -16,6 +16,7 @@ router.get('/getCryptoCurrency/:currencyCode', (req, res) => {
         if (response && response.data && response.data.length > 0) {
             let data = response.data.map(i => {
                 return {
+                    id: i.id,
                     rank: i.cmc_rank,
                     symbol: i.symbol,
                     price: i.quote[req.params.currencyCode].price,

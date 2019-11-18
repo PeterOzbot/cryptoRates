@@ -1,6 +1,28 @@
-.crypto-currency-container{
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-  }
+.crypto-currency-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5% 35% 0% 35%;
+}
 
+.refresh-button {
+  margin: 15px;
+  float: right;
+}
+
+.positiveChange {
+  color: #77dd77;
+}
+
+.negativeChange {
+  color: #ff6961;
+}
+
+#name {
+  font-size: 25px;
+  color: #b37ea4;
+}
+
+#price {
+  font-size: 25px;
+  color: #7ea4b3;
+}
