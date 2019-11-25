@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   availableCurrencies: [{ code: 'USD' }, { code: 'EUR' }, { code: 'CNY' }],
-  serverUrl: 'http://localhost:4000/api',
+  serverUrl: 'http://localhost:5000/api',
+  /*serverUrl: 'http://localhost:4000/api', without Nginx use this */
   getCryptoCurrency: 'getCryptoCurrency',
   getCryptoCurrencyBtcPrice: 'getCryptoCurrencyBtcPrice',
   getCryptoCurrencyDetails: 'getCryptoCurrencyDetails'

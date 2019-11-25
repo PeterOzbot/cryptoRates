@@ -1,12 +1,8 @@
 // lib/app.ts
 var express = require('express');
-var cors = require('cors')
 const http = require('http');
 
 var app = express();
-
-// Enable CORS
-app.use(cors());
 
 // Get our API routes
 const getCryptoCurrency = require('./api/get-crypto-currency');
